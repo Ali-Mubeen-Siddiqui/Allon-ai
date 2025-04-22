@@ -1,5 +1,6 @@
 import pyttsx3
 from typing import Optional
+import re
 
 class VoiceEngine:
     def __init__(self, volume: float = 1.0, rate: int = 200) -> None:
@@ -34,6 +35,7 @@ class VoiceEngine:
             text (str): The text to be spoken
         """
         try:
+            text = self.filter_response(text)
             self.engine.say(text)
             print(f"[ALLON]: {text}")
             self.engine.runAndWait()
@@ -47,3 +49,9 @@ class VoiceEngine:
     def get_rate(self) -> int:
         """Get the current speech rate."""
         return self.engine.getProperty('rate')
+    
+
+    def filter_response(self, text):
+        # Remove any text between <thinking> and </thinking> tags
+        filtered_text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+        return filtered_text.strip()

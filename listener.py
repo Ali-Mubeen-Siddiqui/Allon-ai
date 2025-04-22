@@ -1,7 +1,8 @@
 import speech_recognition as sr
 from typing import Optional
 
-class Listener_Engine:
+
+class ListenerEngine:
     def __init__(self) -> None:
         self.rcg = sr.Recognizer()
         self.source = None
@@ -14,6 +15,7 @@ class Listener_Engine:
         self.rcg.dynamic_energy_adjustment_ratio = 1.5
         self.setup_microphone()
 
+    
     def setup_microphone(self) -> None:
         """Set up the microphone and adjust for ambient noise."""
         try:
@@ -22,8 +24,8 @@ class Listener_Engine:
                 self.rcg.adjust_for_ambient_noise(source, duration=1)
         except Exception as e:
             print(f"Error setting up microphone: {e}")
-            raise
-
+            
+    
     def take_command(self) -> Optional[str]:
         """Listen for and process voice command."""
         try:
