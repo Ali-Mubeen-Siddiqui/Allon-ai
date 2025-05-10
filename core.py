@@ -2,7 +2,7 @@ from openai import OpenAI  # Import OpenAI class for interacting with the OpenAI
 import os  # Import os module for file operations and environment variables
 from dotenv import load_dotenv  # Import load_dotenv to load environment variables from .env file
 from memory_data.memory import Memory  # Import Memory class for managing memory
-
+import re #import regex
 # Load environment variables from .env file
 load_dotenv()
 
@@ -30,7 +30,7 @@ class Core:
         else:
             self.mem = None  # Set memory to None if save_mem is False
 
-        self.short = self.load_short_term_memory()
+        self.short,self.long = self.load_memory()
 
     def get_response(self, user_message):
         # Method to get a response from the AI based on user_message and training_data
@@ -40,8 +40,9 @@ class Core:
                 {
                     "role": "system",
                     "content": (
-                        f"{self.training_data}"  # Include training data in the system message
+                        f"{self.training_data}\n at the strating of every response you will <long>true or false</long> ,this will tell that does this need to be saved in long memory or not."  # Include training data in the system message
                         f"This is your short term memory\n{self.short}"
+                        f"This is your long term memory\n{self.long}"
                     ),
                     
                         
@@ -59,7 +60,12 @@ class Core:
             presence_penalty=0.0,  # Presence penalty for the response
         )
         response = completion.choices[0].message.content  # Return the content of the first choice
-        self.add_to_short(f"\n[USER]: {user_message}\n[YOU]: {response}")
+        long_content = re.findall(r'<long>(.*?)</long>', response, flags=re.DOTALL)
+        
+        response = re.sub(r'<long>.*?</long>', '', response, flags=re.DOTALL)
+        self.add_to_short(f"\n[USER]: {user_message}\n[ALLON]: {response}")
+        if self.validate_long_or_short(long_content):
+            self.add_to_long(f"\n[USER]: {user_message}\n[ALLON]: {response}")
         return response
         
     def load_training_data(self, path):
@@ -74,11 +80,12 @@ class Core:
             raise IOError(f"Error reading training data: {e}")  # Raise error if an exception occurs during file reading
 
 
-    def load_short_term_memory(self):
+    def load_memory(self):
         if self.mem is not None:
             short_mem = self.mem.load_short()
+            long_mem = self.mem.load_long()
             
-            return short_mem
+            return short_mem,long_mem
        
         return None
     def add_to_short(self,data):
@@ -89,3 +96,19 @@ class Core:
             
        
         return None
+
+    def add_to_long(self,data):
+        if self.mem is not None:
+            long_mem = self.mem.add_long(data)
+            self.long += f"\n {data}"
+
+        return None
+    
+    def validate_long_or_short(self,choice : list):
+        try:
+            if choice[0].strip().lower() == "true":
+                return True
+            return False
+        except IndexError:
+            return True
+        return False

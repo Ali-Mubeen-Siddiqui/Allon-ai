@@ -8,6 +8,7 @@ class Memory:
        
         self.BASE_URL = os.getcwd()
         self.short_term_path = os.path.join(self.BASE_URL, "memory_data/shortTerm.txt")
+        self.long_term_path = os.path.join(self.BASE_URL, "memory_data/longTerm.txt")
         self.config = os.path.join(self.BASE_URL, "memory_data/mem_config.json")
         duration = 5
 
@@ -37,6 +38,20 @@ class Memory:
             with open(self.short_term_path, "r", encoding="utf-8") as short_mem:
                 short_txt = short_mem.read()
                 return short_txt if short_txt else "No previous conversations."
+        except FileNotFoundError:
+            with open(self.short_term_path, "w", encoding="utf-8") as f:
+                f.write("")
+            return "No previous conversations."
+        except Exception as e:
+            print(f"Error loading short term memory: {e}")
+            return "No previous conversations."
+        
+
+    def load_long(self):
+        try:
+            with open(self.long_term_path, "r", encoding="utf-8") as long_mem:
+                long_txt = long_mem.read()
+                return long_txt if long_txt else "No previous conversations."
         except FileNotFoundError:
             with open(self.short_term_path, "w", encoding="utf-8") as f:
                 f.write("")
@@ -106,3 +121,11 @@ class Memory:
         except Exception as e:
             print(f"Error reading configuration file: {e}")
             return False
+        
+    def add_long(self,data):
+        try:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            with open(self.long_term_path, "a", encoding="utf-8") as long_mem:
+                long_mem.write(f"\n{timestamp}\n{data}")
+        except Exception as e:
+            print(f"Error adding to long term memory: {e}")
