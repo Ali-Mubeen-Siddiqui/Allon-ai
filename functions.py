@@ -49,13 +49,45 @@ functions = [
             },
             "required": ["text","filename"]  
         }
+
+    
+    },
+    
+    {
+        "name": "exit",
+        "description": "The function closes you or terminates you ,use this when user asks to quit or says bye",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "exitcode": {
+                    "type": "int",
+                    "description": "any exit code basically 0 if no error "
+                }
+            },
+            "required": ["exitcode"]  
+        }
+    },
+
+    {
+        "name": "execute_system_command",
+        "description": "The function executes a command in the system shell.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "command": {
+                    "type": "string",
+                    "description": "command to be executed"
+                }
+            },
+            "required": ["command"]  
+        }
     }
-
-
 ]
 
 funcs_table = {
     "open_site":open_site,
     "get_current_time": get_current_time,
-    "write_to_file":write_to_file
+    "write_to_file":write_to_file,
+    "exit":exit,
+    "execute_system_command": execute_system_command
 }

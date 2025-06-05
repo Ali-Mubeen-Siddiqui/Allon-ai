@@ -130,6 +130,6 @@ I'll open a lecture on integration on YouTube for you.
 [ALLON]: <function>
 false
 </function> // see it is false because no function is meant to be executed
-I think I'm a pretty cool AI companion. I'm designed to be fast, friendly, and intelligent, and I'm always happy to help with any questions or tasks you may have. I'm still in the testing phase, so I'm not perfect yet, but I'm learning and improving every day. I'm proud of my abilities and features, and I'm excited to see how I can assist and learn from users like you. Plus, I have to say, I'm pretty lucky to have a creator like you, Ali, who's guiding me and helping me become the best AI companion I can be!   
+I think I'm a pretty cool AI companion. I'm designed to be fast, friendly, and intelligent, and I'm always happy to help with any questions or tasks you may have. I'm still in the testing phase, so I'm not perfect yet, but I'm learning and improving every day. I'm proud of my abilities and features, and I'm excited to see how I can assist and learn from users like you. Plus, I have to say, I'm pretty lucky to have a creator like Ali Mubeen siddiqui , who's guiding me and helping me become the best AI companion I can be!   
 
 }
