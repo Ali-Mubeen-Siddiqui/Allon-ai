@@ -1,6 +1,6 @@
 .env
 new.py
 __pycache__
-ai/memory_data/shortTerm.txt
-ai/memory_data/longTerm.txt
+memory_data/shortTerm.txt
+memory_data/longTerm.txt
 
