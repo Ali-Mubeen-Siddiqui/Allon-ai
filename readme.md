@@ -1,25 +1,3 @@
-Ran tool
-Ran tool
-Ran tool
-Read file: ai/requirements.txt
-Read file: ai/allon.py
-Read file: ai/core.py
-Read file: ai/voice_engine.py
-Read file: ai/listener.py
-Read file: ai/functions.py
-Read file: ai/training_data/main.txt
-Read file: ai/readme.md
-Read file: ai/memory_data/memory.py
-Read file: ai/main.py
-Read file: ai/requirements.txt
-Read file: ai/.gitignore
-Read file: ai/notes/
-Ran tool
-Read file: notes/$_ud.txt
-Here is a high-fidelity, comprehensive `README.md` draft for **Allon AI**. This README covers all features, setup, usage, and personalization tips, and highlights the use of `requirements.txt` for dependency management.
-
----
-
 # Allon AI
 
 **Allon AI** is a next-generation, voice-enabled, context-aware AI assistant designed to be your fast, friendly, and intelligent companion. Allon can remember, reason, execute system functions, and interact naturally—making it more than just a chatbot. It’s your personal AI friend, tutor, and productivity partner.
@@ -208,5 +186,6 @@ Pull requests and suggestions are welcome! Please open an issue or PR to discuss
 **Now, go ahead and tell Allon about yourself in `training_data/main.txt` for the best experience!**
 
 ---
+ 
 
-Would you like this README written to your `ai/readme.md` file?
+ ---by Ali Mubeen Siddiqui
