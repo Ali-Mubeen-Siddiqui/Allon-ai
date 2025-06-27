@@ -10,7 +10,7 @@ from functions import functions,funcs_table
 load_dotenv()
 
 class Core:
-    def __init__(self, training_data, model="meta-llama/llama-3.3-70b-instruct:free", save_mem=True):
+    def __init__(self, training_data, model="deepseek/deepseek-r1-0528:free", save_mem=True):
         # Initialize the Core class with training data, model, and save_mem option
         # Get API key from environment variables
         self.model = model  # Set the model to use for the AI
@@ -70,9 +70,9 @@ class Core:
         long_content = re.findall(r'<long>(.*?)</long>', full_response, flags=re.DOTALL)
         response = re.sub(r'<long>.*?</long>', '', full_response, flags=re.DOTALL)
         
-        self.add_to_short(f"\n[USER]: {user_message}\n[ALLON]: {response}")
+        self.add_to_short(f"\n[USER]: {user_message}\n[ALLON]: {full_response}")
         if self.validate_long_or_short(long_content):
-            self.add_to_long(f"\n[USER]: {user_message}\n[ALLON]: {response}")
+            self.add_to_long(f"\n[USER]: {user_message}\n[ALLON]: {full_response}")
 
         if self.validate_func(full_response):  # use full_response
             output = self.functions_main(full_response)  # pass full_response
