@@ -44,7 +44,7 @@
 ### 1. **Clone the Repository**
 ```bash
 git clone git@github.com:Ali-Mubeen-Siddiqui/Allon-ai.git
-cd AllonAi/ai
+
 ```
 
 ### 2. **Install Dependencies**
@@ -130,7 +130,7 @@ Allon uses special tags in its responses to control behavior:
 ## 🗂️ Project Structure
 
 ```
-ai/
+your folder/
 ├── allon.py           # Main Allon class
 ├── core.py            # Core AI logic and memory
 ├── functions.py       # Function definitions and registry
@@ -152,8 +152,8 @@ Sensitive and runtime files are ignored by default:
 ```
 .env
 __pycache__/
-ai/memory_data/shortTerm.txt
-ai/memory_data/longTerm.txt
+memory_data/shortTerm.txt
+memory_data/longTerm.txt
 ```
 
 ---
